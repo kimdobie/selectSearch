@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<!--<script type="text/javascript" src="jquery.selectSearch.js"></script>-->
+<script type="text/javascript" src="jquery.selectSearch_min.js"></script>
+
+
+<style type="text/css">
+h1{font-size:110%;border-top:1px solid #ccc}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	///////////////////////////////////////////////////////////////////
+	// FIrst select list - Apples and Oranges
+	
+	$('#selectApplesOranges').selectSearch($('#searchFieldApplesOranges'));
+	
+	// Add option
+	$('#addOptionButton').click(function(){
+		$('#selectApplesOranges').selectSearch_addOption(
+			$('#newText').val(), 
+			$('#newValue').val(), 
+			$('#newOptGroup').val() ,
+			{searchBox:$('#searchFieldApplesOranges')}
+		);
+						  
+	});
+	
+	
+	//Remove option
+	$('#removeOptionButton').click(function(){
+		$('#selectApplesOranges').selectSearch_removeOption(
+			$('#newText').val(), 
+			$('#newValue').val(), 
+			$('#newOptGroup').val() 
+		);				  
+	});
+	
+	///////////////////////////////////////////////////////////////////
+	// Second select list - Apples
+	$('#selectApples').selectSearch($('#searchFieldApples'),{startSearchFromFront:true});
+	
+	////////////////////////////////////////////////////////////////
+	// Third select list - Oranges
+	$('#selectOranges').selectSearch($('#searchFieldOranges'),{sortOptions:false, sortOptGroups:false });	
+
+
+});
+
+
+
+
+</script>
+
+</head>
+
+<body ><br />
+<h1> Apples and Oranges - search anywhere in text - items sorted</h1>
+<table>
+	<tr>
+		<td><label for="searchFieldApplesOranges" style="font-weight:bold">Search:</label></td>
+
+		<td><input type="text" name="searchFieldApplesOranges" id="searchFieldApplesOranges" /></td>
+		<td rowspan="2" style="vertical-align:top;padding-left:50px">
+			Text:&nbsp;<input type="text" id="newText" /> <br /><br />
+
+ Value:&nbsp;<input type="text" id="newValue" /><br /><br />
+
+	OptGroup:&nbsp;<input type="text" id="newOptGroup" /><br /><br />
+
+		<input type="button" value="Add this item" id="addOptionButton" /> | <input type="button" value="Remove this item" id="removeOptionButton" />
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top"><label for="selectApplesOranges" style="font-weight:bold">Apple Names:</label></td>
+		<td>
+			<select name="select2" size="8" id="selectApplesOranges">
+				<option value="bb">Bananas</option>
+				<optgroup label="Oranges">
+				<option value="232">Tunis</option>
+				<option value="201">Bahianinha</option>
+				<option value="202">Berna</option>
+				<option value="203">Blonde</option>
+				<option value="204">BloodMaltese</option>
+				<option value="205">CaraCara</option>
+				<option value="206">DreamNavel</option>
+				<option value="207">Hamlin</option>
+				<option value="208">Jaffa</option>
+				<option value="209">Jincheng</option>
+				<option value="210">Kona</option>
+				<option value="211">Late Navel</option>
+				<option value="212">Moro</option>
+				<option value="213">Moro Tarocco</option>
+				<option value="214">Navel</option>
+				<option value="215">Parson Brown</option>
+				<option value="216">Pera</option>
+				<option value="217">Rhode Red</option>
+				<option value="218">Roble</option>
+				<option value="219">Salustianas</option>
+				<option value="220">Sanguinelli</option>
+				<option value="221">Shamouti, Jaffa</option>
+				<option value="222">Valencia</option>
+				<option value="223">Washington Navel</option>
+				<option value="224">African</option>
+				<option value="225">Argentine</option>
+				<option value="226">Bergamot</option>
+				<option value="227">Bigaradier Apepu</option>
+				<option value="228">Bittersweet</option>
+				<option value="229">Chinotto</option>
+				<option value="230">Gou Tou</option>
+				<option value="231">Seville</option>
+				
+				</optgroup>
+				<optgroup label="Apples">
+				<option value="107">YELLOW  NEWTON</option>
+				<option value="1">ADANAC</option>
+				<option value="2">AKANE</option>
+				<option value="3">ALBANY  BEAUTY</option>
+				<option value="4">AURORA</option>
+				<option value="5">BALLARAT</option>
+				<option value="6">BATTLEFORD</option>
+				<option value="7">BELLE  DE BOSKOOP</option>
+				<option value="8">BELMAC</option>
+				<option value="9">BEN DAVIS</option>
+				<option value="10">BOLERO</option>
+				<option value="11">BRAEBURN</option>
+				<option value="12">BREAKEY</option>
+				<option value="13">CAPTAIN  KIDD</option>
+				<option value="14">CARLOS QUEEN</option>
+				<option value="15">CALVILLE  BLANC D'HIVER</option>
+				<option value="16">CORTLAND</option>
+				<option value="17">COX'S  ORANGE PIPPIN</option>
+				<option value="18">DELICIOUS</option>
+				<option value="19">DISCOVERY</option>
+				<option value="20">EARLY  HARVEST</option>
+				<option value="21">EDITH SMITH</option>
+				<option value="22">EGREMONT  RUSSET</option>
+				<option value="23">ELLISONS ORANGE</option>
+				<option value="24">EPICURE</option>
+				<option value="25">EMPIRE</option>
+				<option value="26">EXETER</option>
+				<option value="27">FORTUNE</option>
+				<option value="28">FREYBURG</option>
+				<option value="29">FUJI</option>
+				<option value="30">GALA</option>
+				<option value="31">GOLDEN  DELICIOUS</option>
+				<option value="32">GOLDEN SUPREME </option>
+				<option value="33">GOODLAND</option>
+				<option value="34">GRANNY  SMITH</option>
+				<option value="35">GRAVENSTEIN</option>
+				<option value="36">HARCOURT</option>
+				<option value="37">HEYER 12</option>
+				<option value="38">HEYER 20</option>
+				<option value="39">HONEY CRISP</option>
+				<option value="40">HOREI</option>
+				<option value="41">IDARED</option>
+				<option value="42">IMPERIAL</option>
+				<option value="43">GALA</option>
+				<option value="44">IRISH  PEACH</option>
+				<option value="45">JERSEYMAC</option>
+				<option value="46">JAMES  GRIEVE</option>
+				<option value="47">JONAFREE</option>
+				<option value="48">JONAGOLD</option>
+				<option value="49">JONAMAC</option>
+				<option value="50">JONATHAN</option>
+				<option value="51">KIDDS  ORANGE RED</option>
+				<option value="52">LAXTON'S FORTUNE</option>
+				<option value="53">LIBERTY</option>
+				<option value="54">LOBO</option>
+				<option value="55">LODI</option>
+				<option value="56">LORD  NELSON</option>
+				<option value="57">McINTOSH</option>
+				<option value="58">MACOUN</option>
+				<option value="59">MERTON BEAUTY</option>
+				<option value="60">MERTON  RUSSET</option>
+				<option value="61">MOTHER</option>
+				<option value="62">MUTSU</option>
+				<option value="63">NORLAND</option>
+				<option value="64">NORTHERN  SPY</option>
+				<option value="65">PARKLAND</option>
+				<option value="66">PATTERSON</option>
+				<option value="67">PINK  LADY</option>
+				<option value="68">PRIMEVERE</option>
+				<option value="69">PRISCILLA</option>
+				<option value="70">PRISTINE</option>
+				<option value="71">POLKA</option>
+				<option value="72">RALLS GENET</option>
+				<option value="73">RED ASTRACHAN</option>
+				<option value="74">REDCORT</option>
+				<option value="75">RED  DELICIOUS</option>
+				<option value="76">RED GRAVENSTEIN</option>
+				<option value="77">RED  WEALTHY</option>
+				<option value="78">RHODE  ISLAND GREENING</option>
+				<option value="79">RIBSTON  PIPPIN</option>
+				<option value="80">RICHARED</option>
+				<option value="81">ROME  BEAUTY</option>
+				<option value="82">ROXBURY  RUSSET</option>
+				<option value="83">SANSA</option>
+				<option value="84">SENSHU</option>
+				<option value="85">SMOOTHEE</option>
+				<option value="86">SPARTAN</option>
+				<option value="87">SPIGOLD</option>
+				<option value="88">SPLENDOUR</option>
+				<option value="89">SPUR  WINTER BANANA</option>
+				<option value="90">STURMER</option>
+				<option value="91">SUNFUJ I</option>
+				<option value="92">SUNNY BROOK</option>
+				<option value="93">SUNSET</option>
+				<option value="94">STAYMAN  WINESAP</option>
+				<option value="95">TELSTAR</option>
+				<option value="96">TWENTY OUNCE</option>
+				<option value="97">TYDMAN'S EARLY</option>
+				<option value="98">TYDEMAN'S  RED</option>
+				<option value="99">TYDEMANS  LATE ORANGE</option>
+				<option value="100">VISTA  BELLA</option>
+				<option value="101">WAGENER</option>
+				<option value="102">WALTZ</option>
+				<option value="103">WESTLAND</option>
+				<option value="104">WINESAP</option>
+				<option value="105">WINTER  BANANA</option>
+				<option value="106">WORCESTER  PEARMAIN</option>
+				
+				
+				</optgroup>
+			</select>
+		</td>
+	</tr>
+
+
+	
+	
+	
+	
+</table>
+
+<h1> Apples - search from the start of the text - items sorted</h1>
+<table>
+	<tr>
+		<td><label for="searchFieldApples" style="font-weight:bold">Search:</label></td>
+
+		<td><input type="text" name="textfieldApples" id="searchFieldApples" /></td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top"><label for="selectApples" style="font-weight:bold">Apple Names:</label></td>
+		<td>
+			<select name="select2" size="8" id="selectApples">
+				<option value="a">AA APPLE</option>
+				<option value="107">YELLOW  NEWTON</option>
+				<option value="1">ADANAC</option>
+				<option value="2">AKANE</option>
+				<option value="3">ALBANY  BEAUTY</option>
+				<option value="4">AURORA</option>
+				<option value="5">BALLARAT</option>
+				<option value="6">BATTLEFORD</option>
+				<option value="7">BELLE  DE BOSKOOP</option>
+				<option value="8">BELMAC</option>
+				<option value="9">BEN DAVIS</option>
+				<option value="10">BOLERO</option>
+				<option value="11">BRAEBURN</option>
+				<option value="12">BREAKEY</option>
+				<option value="13">CAPTAIN  KIDD</option>
+				<option value="14">CARLOS QUEEN</option>
+				<option value="15">CALVILLE  BLANC D'HIVER</option>
+				<option value="16">CORTLAND</option>
+				<option value="17">COX'S  ORANGE PIPPIN</option>
+				<option value="18">DELICIOUS</option>
+				<option value="19">DISCOVERY</option>
+				<option value="20">EARLY  HARVEST</option>
+				<option value="21">EDITH SMITH</option>
+				<option value="22">EGREMONT  RUSSET</option>
+				<option value="23">ELLISONS ORANGE</option>
+				<option value="24">EPICURE</option>
+				<option value="25">EMPIRE</option>
+				<option value="26">EXETER</option>
+				<option value="27">FORTUNE</option>
+				<option value="28">FREYBURG</option>
+				<option value="29">FUJI</option>
+				<option value="30">GALA</option>
+				<option value="31">GOLDEN  DELICIOUS</option>
+				<option value="32">GOLDEN SUPREME </option>
+				<option value="33">GOODLAND</option>
+				<option value="34">GRANNY  SMITH</option>
+				<option value="35">GRAVENSTEIN</option>
+				<option value="36">HARCOURT</option>
+				<option value="37">HEYER 12</option>
+				<option value="38">HEYER 20</option>
+				<option value="39">HONEY CRISP</option>
+				<option value="40">HOREI</option>
+				<option value="41">IDARED</option>
+				<option value="42">IMPERIAL</option>
+				<option value="43">GALA</option>
+				<option value="44">IRISH  PEACH</option>
+				<option value="45">JERSEYMAC</option>
+				<option value="46">JAMES  GRIEVE</option>
+				<option value="47">JONAFREE</option>
+				<option value="48">JONAGOLD</option>
+				<option value="49">JONAMAC</option>
+				<option value="50">JONATHAN</option>
+				<option value="51">KIDDS  ORANGE RED</option>
+				<option value="52">LAXTON'S FORTUNE</option>
+				<option value="53">LIBERTY</option>
+				<option value="54">LOBO</option>
+				<option value="55">LODI</option>
+				<option value="56">LORD  NELSON</option>
+				<option value="57">McINTOSH</option>
+				<option value="58">MACOUN</option>
+				<option value="59">MERTON BEAUTY</option>
+				<option value="60">MERTON  RUSSET</option>
+				<option value="61">MOTHER</option>
+				<option value="62">MUTSU</option>
+				<option value="63">NORLAND</option>
+				<option value="64">NORTHERN  SPY</option>
+				<option value="65">PARKLAND</option>
+				<option value="66">PATTERSON</option>
+				<option value="67">PINK  LADY</option>
+				<option value="68">PRIMEVERE</option>
+				<option value="69">PRISCILLA</option>
+				<option value="70">PRISTINE</option>
+				<option value="71">POLKA</option>
+				<option value="72">RALLS GENET</option>
+				<option value="73">RED ASTRACHAN</option>
+				<option value="74">REDCORT</option>
+				<option value="75">RED  DELICIOUS</option>
+				<option value="76">RED GRAVENSTEIN</option>
+				<option value="77">RED  WEALTHY</option>
+				<option value="78">RHODE  ISLAND GREENING</option>
+				<option value="79">RIBSTON  PIPPIN</option>
+				<option value="80">RICHARED</option>
+				<option value="81">ROME  BEAUTY</option>
+				<option value="82">ROXBURY  RUSSET</option>
+				<option value="83">SANSA</option>
+				<option value="84">SENSHU</option>
+				<option value="85">SMOOTHEE</option>
+				<option value="86">SPARTAN</option>
+				<option value="87">SPIGOLD</option>
+				<option value="88">SPLENDOUR</option>
+				<option value="89">SPUR  WINTER BANANA</option>
+				<option value="90">STURMER</option>
+				<option value="91">SUNFUJ I</option>
+				<option value="92">SUNNY BROOK</option>
+				<option value="93">SUNSET</option>
+				<option value="94">STAYMAN  WINESAP</option>
+				<option value="95">TELSTAR</option>
+				<option value="96">TWENTY OUNCE</option>
+				<option value="97">TYDMAN'S EARLY</option>
+				<option value="98">TYDEMAN'S  RED</option>
+				<option value="99">TYDEMANS  LATE ORANGE</option>
+				<option value="100">VISTA  BELLA</option>
+				<option value="101">WAGENER</option>
+				<option value="102">WALTZ</option>
+				<option value="103">WESTLAND</option>
+				<option value="104">WINESAP</option>
+				<option value="105">WINTER  BANANA</option>
+				<option value="106">WORCESTER  PEARMAIN</option>
+
+			</select>
+		</td>
+	</tr>
+</table>
+
+<h1> Oranges - search anywhere in text - items NOT sorted</h1>
+<table>
+	<tr>
+		<td><label for="searchFieldOranges" style="font-weight:bold">Search:</label></td>
+
+		<td><input type="text" name="searchFieldOranges" id="searchFieldOranges" /></td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top"><label for="selectOranges" style="font-weight:bold">Apple Names:</label></td>
+		<td><select name="select" size="8" id="selectOranges">
+		  <optgroup label="Oranges">
+		    <option value="232">Tunis</option>
+		    <option value="201">Bahianinha</option>
+		    <option value="202">Berna</option>
+		    <option value="203">Blonde</option>
+		    <option value="204">BloodMaltese</option>
+		    <option value="205">CaraCara</option>
+		    <option value="206">DreamNavel</option>
+		    <option value="207">Hamlin</option>
+		    <option value="208">Jaffa</option>
+		    <option value="209">Jincheng</option>
+		    <option value="210">Kona</option>
+		    <option value="211">Late Navel</option>
+		    <option value="212">Moro</option>
+		    <option value="213">Moro Tarocco</option>
+		    <option value="214">Navel</option>
+		    <option value="215">Parson Brown</option>
+		    <option value="216">Pera</option>
+		    <option value="217">Rhode Red</option>
+		    <option value="218">Roble</option>
+		    <option value="219">Salustianas</option>
+		    <option value="220">Sanguinelli</option>
+		    <option value="221">Shamouti, Jaffa</option>
+		    <option value="222">Valencia</option>
+		    <option value="223">Washington Navel</option>
+		    <option value="224">African</option>
+		    <option value="225">Argentine</option>
+		    <option value="226">Bergamot</option>
+		    <option value="227">Bigaradier Apepu</option>
+		    <option value="228">Bittersweet</option>
+		    <option value="229">Chinotto</option>
+		    <option value="230">Gou Tou</option>
+		    <option value="231">Seville</option>
+	      </optgroup>
+		  <optgroup label="Apples">
+		    <option value="107">YELLOW  NEWTON</option>
+		    <option value="1">ADANAC</option>
+		    <option value="2">AKANE</option>
+		    <option value="3">ALBANY  BEAUTY</option>
+		    <option value="4">AURORA</option>
+		    <option value="5">BALLARAT</option>
+		    <option value="6">BATTLEFORD</option>
+		    <option value="7">BELLE  DE BOSKOOP</option>
+		    <option value="8">BELMAC</option>
+		    <option value="9">BEN DAVIS</option>
+		    <option value="10">BOLERO</option>
+		    <option value="11">BRAEBURN</option>
+		    <option value="12">BREAKEY</option>
+		    <option value="13">CAPTAIN  KIDD</option>
+		    <option value="14">CARLOS QUEEN</option>
+		    <option value="15">CALVILLE  BLANC D'HIVER</option>
+		    <option value="16">CORTLAND</option>
+		    <option value="17">COX'S  ORANGE PIPPIN</option>
+		    <option value="18">DELICIOUS</option>
+		    <option value="19">DISCOVERY</option>
+		    <option value="20">EARLY  HARVEST</option>
+		    <option value="21">EDITH SMITH</option>
+		    <option value="22">EGREMONT  RUSSET</option>
+		    <option value="23">ELLISONS ORANGE</option>
+		    <option value="24">EPICURE</option>
+		    <option value="25">EMPIRE</option>
+		    <option value="26">EXETER</option>
+		    <option value="27">FORTUNE</option>
+		    <option value="28">FREYBURG</option>
+		    <option value="29">FUJI</option>
+		    <option value="30">GALA</option>
+		    <option value="31">GOLDEN  DELICIOUS</option>
+		    <option value="32">GOLDEN SUPREME </option>
+		    <option value="33">GOODLAND</option>
+		    <option value="34">GRANNY  SMITH</option>
+		    <option value="35">GRAVENSTEIN</option>
+		    <option value="36">HARCOURT</option>
+		    <option value="37">HEYER 12</option>
+		    <option value="38">HEYER 20</option>
+		    <option value="39">HONEY CRISP</option>
+		    <option value="40">HOREI</option>
+		    <option value="41">IDARED</option>
+		    <option value="42">IMPERIAL</option>
+		    <option value="43">GALA</option>
+		    <option value="44">IRISH  PEACH</option>
+		    <option value="45">JERSEYMAC</option>
+		    <option value="46">JAMES  GRIEVE</option>
+		    <option value="47">JONAFREE</option>
+		    <option value="48">JONAGOLD</option>
+		    <option value="49">JONAMAC</option>
+		    <option value="50">JONATHAN</option>
+		    <option value="51">KIDDS  ORANGE RED</option>
+		    <option value="52">LAXTON'S FORTUNE</option>
+		    <option value="53">LIBERTY</option>
+		    <option value="54">LOBO</option>
+		    <option value="55">LODI</option>
+		    <option value="56">LORD  NELSON</option>
+		    <option value="57">McINTOSH</option>
+		    <option value="58">MACOUN</option>
+		    <option value="59">MERTON BEAUTY</option>
+		    <option value="60">MERTON  RUSSET</option>
+		    <option value="61">MOTHER</option>
+		    <option value="62">MUTSU</option>
+		    <option value="63">NORLAND</option>
+		    <option value="64">NORTHERN  SPY</option>
+		    <option value="65">PARKLAND</option>
+		    <option value="66">PATTERSON</option>
+		    <option value="67">PINK  LADY</option>
+		    <option value="68">PRIMEVERE</option>
+		    <option value="69">PRISCILLA</option>
+		    <option value="70">PRISTINE</option>
+		    <option value="71">POLKA</option>
+		    <option value="72">RALLS GENET</option>
+		    <option value="73">RED ASTRACHAN</option>
+		    <option value="74">REDCORT</option>
+		    <option value="75">RED  DELICIOUS</option>
+		    <option value="76">RED GRAVENSTEIN</option>
+		    <option value="77">RED  WEALTHY</option>
+		    <option value="78">RHODE  ISLAND GREENING</option>
+		    <option value="79">RIBSTON  PIPPIN</option>
+		    <option value="80">RICHARED</option>
+		    <option value="81">ROME  BEAUTY</option>
+		    <option value="82">ROXBURY  RUSSET</option>
+		    <option value="83">SANSA</option>
+		    <option value="84">SENSHU</option>
+		    <option value="85">SMOOTHEE</option>
+		    <option value="86">SPARTAN</option>
+		    <option value="87">SPIGOLD</option>
+		    <option value="88">SPLENDOUR</option>
+		    <option value="89">SPUR  WINTER BANANA</option>
+		    <option value="90">STURMER</option>
+		    <option value="91">SUNFUJ I</option>
+		    <option value="92">SUNNY BROOK</option>
+		    <option value="93">SUNSET</option>
+		    <option value="94">STAYMAN  WINESAP</option>
+		    <option value="95">TELSTAR</option>
+		    <option value="96">TWENTY OUNCE</option>
+		    <option value="97">TYDMAN'S EARLY</option>
+		    <option value="98">TYDEMAN'S  RED</option>
+		    <option value="99">TYDEMANS  LATE ORANGE</option>
+		    <option value="100">VISTA  BELLA</option>
+		    <option value="101">WAGENER</option>
+		    <option value="102">WALTZ</option>
+		    <option value="103">WESTLAND</option>
+		    <option value="104">WINESAP</option>
+		    <option value="105">WINTER  BANANA</option>
+		    <option value="106">WORCESTER  PEARMAIN</option>
+	      </optgroup>
+	    </select></td>
+	</tr>
+</table>
+</body>
+</html>
