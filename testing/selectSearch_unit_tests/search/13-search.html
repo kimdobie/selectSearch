@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>selectSearch-Search</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Test case 13: search: options matched from the start (opt groups not sorted -item not sorted)</td></tr>
+</thead><tbody>
+
+<!--Test case 13: search: options matched from the start (opt groups not sorted -item not sorted)-->
+<tr>
+	<td>type</td>
+	<td>searchFieldOranges</td>
+	<td>sa</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldOranges</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=//select[@id='selectOranges']//optgroup[2]//option[1]</td>
+	<td>SANSA</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=//select[@id='selectOranges']//optgroup[1]//option[2]</td>
+	<td>Salustianas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=//select[@id='selectOranges']//optgroup[1]//option[1]</td>
+	<td>Sanguinelli</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldOranges</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldOranges</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=//select[@id='selectOranges']//optgroup[1]//option[1]</td>
+	<td>Tunis</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
