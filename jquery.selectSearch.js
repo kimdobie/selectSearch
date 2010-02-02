@@ -1,8 +1,8 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2.1beta
-// Date: 11/12/2009
+// Version 1.2.1
+// Date: 02/02/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -18,7 +18,7 @@
 ///////////////////////////////// HOW TO USE THESE FUNCTIONS /////////////////////////
 // In most cases, you call the selectSearch to a table object using jQuery "daisy-chaining"
 
-// Example : jQuery('#mySelectList').selectSearch(searchBoxObj);
+// Example : $('#mySelectList').selectSearch(searchBoxObj);
 
 // Where searchBoxObj, is a jQuery pointer to the search box the user types in their search string to narrow down the select menu
 
@@ -26,16 +26,16 @@
 
 // If you need to tweek how the selectSearch method is applied, you can add any of the following options:
 // {
-//	 selectLast:true/false,   // If there is only one option left, should it be selected
-//	startSearchFromFront:true/false, //Shoudld the search begin matching at the start of the option text
-//	sortOptions:true/false, //Should the options be sorted
-//	sortOptGroups:true/false, //Shoudl the optgroups be sorted
-//	showEmptyOptGroup:true/false, //If there are any optgroups that do not have any options, should the optgroup label show
-//	fixedWidth:true/false, //Should the select list have a fixed width
+//	 selectLast:true/false,  			 // If there is only one option left, should it be selected
+//	startSearchFromFront:true/false,	 //Shoudld the search begin matching at the start of the option text
+//	sortOptions:true/false, 			//Should the options be sorted
+//	sortOptGroups:true/false, 			//Shoudl the optgroups be sorted
+//	showEmptyOptGroup:true/false, 		//If there are any optgroups that do not have any options, should the optgroup label show
+//	fixedWidth:true/false, 				//Should the select list have a fixed width
 // }
 
 
-// Example:  jQuery('#mySelectList').selectSearch(searchBoxObj,{selectLast:false,startSearchFromFront:false});
+// Example: $('#mySelectList').selectSearch(searchBoxObj,{selectLast:false,startSearchFromFront:false});
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@
 
 ////////////////////////////////// GENERAL TIPS FOR SETTING UP YOUR SELECT LIST ///////////
 
-//* All optgroups should have a label, and that label must contain at least 1 charicter 
+//* All optgroups should have a non-empty label
 //* All option items should have a value attribute set
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 //Because of how this library is constructed, you cannot directly add an option via the DOM.
 //You must call the selectSearch_addOption method and apply it the select list
 //
-//Example: jQuery('#mySelectList').selectSearch_addOption(itemText,itemValue,optGroupLabel)
+//Example: $('#mySelectList').selectSearch_addOption(itemText,itemValue,optGroupLabel)
 //
 //Where:
 //	itemText - the display text of the option
@@ -76,7 +76,7 @@
 //	sortOptions:true/false, //Should the options be sorted
 //	sortOptGroups:true/false, //Shoudl the optgroups be sorted
 //	showEmptyOptGroup:true/false, //If there are any optgroups that do not have any options, should the optgroup label show
-// searchBox:pointerToSearchBox // If this isn't provided, all the itmes will be displayed in the select list
+
 
 // }
 
@@ -122,15 +122,6 @@
 
 
 
-///////////////////////////////// KNOWN BUGS ////////////////////////
-/*
- - There may be a lag between when a user types in a charicter and when the selectList is refreshed when the selectList becomes large (over 400 items).  This may especially be true on IE
-
-*/
-/////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -149,6 +140,8 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	var showEmptyOptGroup=false;
 	var fixedWidth=true;
 	
+
+	
 	
 	// Check to see if any of the above vars have been set via the varObj
 	if(varObj!=undefined){
@@ -160,6 +153,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		
 		if(varObj.sortOptions!=undefined&&(typeof varObj.sortOptions=="boolean")) sortOptions=varObj.sortOptions;
 		if(varObj.sortOptGroups!=undefined&&(typeof varObj.sortOptGroups=="boolean")) sortOptGroups=varObj.sortOptGroups;
+		
 	}
 	
 	
@@ -240,22 +234,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	var lastOptGroup=null;
 	var optGroupNum=-1;
-	/*jQueryselectList.find('option').each(function(){
-		var currentOptGroupName;
-		if(jQuery(this).parent().get(0).tagName.toLowerCase()=="select") currentOptGroupName=""; //There isn't an optGroup
-		else currentOptGroupName=jQuery(this).parent().eq(0).attr("label");
-		
-		if(lastOptGroup!=currentOptGroupName){
-			//start a new optgroup name
-			lastOptGroup=currentOptGroupName;
-			optGroupNum++;
-			optionList[optGroupNum]=new Array(currentOptGroupName,new Array());
-		}
-		optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
-		
-		
-	});
-	*/
+	
 
 	jQueryselectList.children().each(function(){
 		//FInd first child objects - optgroups or options not in an optgroup
@@ -355,16 +334,21 @@ jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
 
 
 ////////////////////////////////////////////////////////////////////
-jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,sortOptions, showEmptyOptGroup){
+
+jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,sortOptions,showEmptyOptGroup){
 
 	selectItems=selectSearch_Options.optionItems[jQuery(this).attr('id')];
+	
+	
+	
+	//.toLowerCase()
 	
 	if(sortOptGroups){
 		//Sort opt groups! - remeber that selectItem[x][0] is the name of the optgroup
 		selectItems.sort(
 			function(a,b){
-				if(b[0]<a[0])return 1;
-				if(b[0]>a[0])return -1;
+				if(b[0].toLowerCase()<a[0].toLowerCase())return 1;
+				if(b[0].toLowerCase()>a[0].toLowerCase())return -1;
 				else return 0;	  
 			}
 		);
@@ -374,8 +358,8 @@ jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,sortOptions, showEmpty
 		for(var i=0;i<selectItems.length;i++){
 			selectItems[i][1].sort(
 				function(a,b){
-					if( b.text < a.text ){ return 1; }
-					if( b.text > a.text ){ return -1; }
+					if( b.text.toLowerCase() < a.text.toLowerCase() ){ return 1; }
+					if( b.text.toLowerCase() > a.text.toLowerCase() ){ return -1; }
 					else return 0;
 				}
 			);
