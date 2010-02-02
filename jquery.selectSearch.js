@@ -1,7 +1,7 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2
+// Version 1.2.1beta
 // Date: 11/12/2009
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
@@ -133,27 +133,6 @@
 
 
 
-///////////////////////////////// TO-DOS/ FUTURE ENANCEMENTS ////////////////////////
-/*
-		
-	Implement error handeling
-	
-	Add JSDoc comments
-	
-	Need better documentation in the code below
-
-*/
-/////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -246,7 +225,6 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	
 	
-	// the data from the select list must be dumped into selectSearchOptions object
 	
 	//first let's check to see if there is an id assigned to the select menu - if not assign one
 	if(jQueryselectList.attr('id')==""){
@@ -262,7 +240,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	var lastOptGroup=null;
 	var optGroupNum=-1;
-	jQueryselectList.find('option').each(function(){
+	/*jQueryselectList.find('option').each(function(){
 		var currentOptGroupName;
 		if(jQuery(this).parent().get(0).tagName.toLowerCase()=="select") currentOptGroupName=""; //There isn't an optGroup
 		else currentOptGroupName=jQuery(this).parent().eq(0).attr("label");
@@ -277,6 +255,41 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		
 		
 	});
+	*/
+
+	jQueryselectList.children().each(function(){
+		//FInd first child objects - optgroups or options not in an optgroup
+		var currentOptGroupName="";
+		var isThisAGroup=false;
+		
+		if(this.tagName.toLowerCase()=="optgroup"){
+			currentOptGroupName=jQuery(this).attr("label");
+			isThisAGroup=true;
+		}
+	
+		if(lastOptGroup!=currentOptGroupName){
+			optGroupNum++;
+			lastOptGroup=currentOptGroupName;
+			optionList[optGroupNum]=new Array(currentOptGroupName,new Array());
+			
+		}
+		
+		if(!isThisAGroup) optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
+		
+		else{
+			//this is an optgroup and need to go through and add each element in the optgroup
+			jQuery(this).children().each(function(){
+				optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});					 
+			});
+			
+		}
+			
+	});					   
+						   
+	
+	
+	
+	
 	
 	
 	selectSearch_Options.optionItems[jQueryselectList.attr('id')]=optionList;
@@ -288,7 +301,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	
 	// sort if neccessary
-	if(sortOptions)jQueryselectList.selectSearch_sortOptions(sortOptGroups,showEmptyOptGroup);
+	jQueryselectList.selectSearch_sortOptions(sortOptGroups,sortOptions,showEmptyOptGroup);
 	
 	
 	
@@ -309,18 +322,19 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 ////////////////////////////////////////////////////////////////
 
 jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
+	
 	jQueryselectList=jQuery(this);
 	jQueryselectList.html("");
 	for(var k=0;k<tempArray.length;k++){
 		var htmlString="";
 		
 		//create an optgroup and related options
-		
 		if(tempArray[k][0]!=""&&(showEmptyOptGroup||tempArray[k][1].length>0)) htmlString+="<optgroup label='"+tempArray[k][0]+"'>";
 		
 		for(var m=0;m<tempArray[k][1].length;m++){
 			htmlString+="<option value='"+tempArray[k][1][m].value+"'>"+tempArray[k][1][m].text+"</option>";
 		}
+		
 		if(tempArray[k][0]!=""&&(showEmptyOptGroup||tempArray[k][1].length>0))htmlString+="</optgroup>";
 		
 		jQueryselectList.append(htmlString);
@@ -341,7 +355,7 @@ jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
 
 
 ////////////////////////////////////////////////////////////////////
-jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,showEmptyOptGroup){
+jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,sortOptions, showEmptyOptGroup){
 
 	selectItems=selectSearch_Options.optionItems[jQuery(this).attr('id')];
 	
@@ -356,14 +370,16 @@ jQuery.fn.selectSearch_sortOptions=function(sortOptGroups,showEmptyOptGroup){
 		);
 	}
 	// Sort all the items in each optgroup
-	for(var i=0;i<selectItems.length;i++){
-		selectItems[i][1].sort(
-			function(a,b){
-				if( b.text < a.text ){ return 1; }
-				if( b.text > a.text ){ return -1; }
-				else return 0;
-			}
-		);
+	if(sortOptions){
+		for(var i=0;i<selectItems.length;i++){
+			selectItems[i][1].sort(
+				function(a,b){
+					if( b.text < a.text ){ return 1; }
+					if( b.text > a.text ){ return -1; }
+					else return 0;
+				}
+			);
+		}
 	}
 	jQuery(this).selectSearch_buildOptions(selectItems,showEmptyOptGroup);
 	
@@ -419,7 +435,7 @@ jQuery.fn.selectSearch_addOption=function(itemText,itemValue,optGroupLabel,varOb
 		
 		
 		// sort
-		if(sortOptions) jQuery(this).selectSearch_sortOptions(sortOptGroups,showEmptyOptGroup);
+		jQuery(this).selectSearch_sortOptions(sortOptGroups,sortOptions,showEmptyOptGroup);
 		// then simulate a key up on the corresponding textfield
 		if(searchBox!=null)searchBox.trigger('keyup');
 		return this;
