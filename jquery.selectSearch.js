@@ -218,7 +218,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		// there is only one option item left - select it
 		
 		if(selectLast&&jQueryselectList.find('option').length==1){
-			jQueryselectList.find('option:visible').each(function(){this.selected=true});
+			jQueryselectList.find('option').attr('selected','selected');
 		}
 		
 		
