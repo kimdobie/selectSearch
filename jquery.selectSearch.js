@@ -124,10 +124,6 @@
 
 
 
-
-
-
-
 jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	return this.each(function(){
 	var jQueryselectList=jQuery(this);
@@ -199,12 +195,17 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 				if(startSearchFromFront)showOption=matchingFromStart(inputText,optionList[i][1][j].text);
 				else showOption=matching(inputText,optionList[i][1][j].text);
 				
+				// checkto see if selected
+				
 				if(showOption)  tempArray[i][1].push(optionList[i][1][j]);
 				
 			
 			}
 		
 		}
+		
+		
+		
 		
 		// now to actually build the options.
 		jQueryselectList.selectSearch_buildOptions(tempArray,showEmptyOptGroup);
@@ -223,6 +224,34 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		
 		
 	});// end keyup
+	
+	jQueryselectList.change(function(){
+		jQueryselectList.find('option').each(function(){
+	
+		
+		//So for each set the value in the array
+		
+		var optionList=selectSearch_Options.optionItems[jQueryselectList.attr('id')];
+		
+			
+			for(var i=0;i<optionList.length;i++){
+				for(j=0;j<optionList[i][1].length;j++){
+					// let's assume we have match if both the text and value match
+					if( optionList[i][1][j].text==$(this).text()&&optionList[i][1][j].value==$(this).attr('value')){
+						
+						// there is a match
+						 optionList[i][1][j].selected=$(this).attr('selected');
+							
+					}
+					
+				
+				}
+			
+			}
+		
+		});
+	
+	});
 	
 	
 	
@@ -278,7 +307,15 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 			
 		}
 		
-		if(!isThisAGroup) optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
+		if(!isThisAGroup){
+			var isSelected=jQuery(this).attr('selected');
+			
+			optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value"),"selected":isSelected});
+			
+			
+			
+			
+		}
 		
 		else{
 			//this is an optgroup and need to go through and add each element in the optgroup
@@ -336,7 +373,11 @@ jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
 		if(tempArray[k][0]!=""&&(showEmptyOptGroup||tempArray[k][1].length>0)) htmlString+="<optgroup label='"+tempArray[k][0]+"'>";
 		
 		for(var m=0;m<tempArray[k][1].length;m++){
-			htmlString+="<option value='"+tempArray[k][1][m].value+"'>"+tempArray[k][1][m].text+"</option>";
+			htmlString+="<option value='"+tempArray[k][1][m].value+"'";
+			
+			if(tempArray[k][1][m].selected)htmlString+= "selected='selected' ";
+			
+			htmlString+= ">"+tempArray[k][1][m].text+"</option>";
 		}
 		
 		if(tempArray[k][0]!=""&&(showEmptyOptGroup||tempArray[k][1].length>0))htmlString+="</optgroup>";
@@ -510,8 +551,7 @@ jQuery.fn.selectSearch_removeOption=function(itemText,itemValue,optGroupLabel){
 
 function selectSearch_OptionsObject(){
 	//This is a helper object that will hold all the information for the selectSearch objects on the page
-	//The use of a big helper object is to prevent name collisions 
-	//This is only used on IE
+	//The use of a big helper object is to prevent name collisions
 	
 	//This object just holds a big array formatted this way:
 	
@@ -521,6 +561,7 @@ function selectSearch_OptionsObject(){
 	//optionItems['selectObj Id'][x][1].length=number of items in an optgroup
 	//optionItems['selectObj Id'][x][1][y].text=text for a given item
 	//optionItems['selectObj Id'][x][1][y].value=value for a given item
+	//optionItems['selectObj id'][x][1][y].selected= is item to be selectd (true/false)
 	
 	this.optionItems=new Array();
 	
