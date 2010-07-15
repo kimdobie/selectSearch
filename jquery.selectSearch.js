@@ -1,7 +1,7 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2.2 - beta
+// Version 1.2.2 - beta (aka inprogress)
 // Date: 07/15/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
@@ -227,6 +227,8 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	
 	cleanInput=function(input){
+		// NOTE: backslashes "\" and carrots "^" still need to be escaped, but don't cause a falure for the user
+		
 		input=input.replace("(","\\\(");
 		input=input.replace(")","\\\)");
 		input=input.replace("*","\\\*");
@@ -236,6 +238,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		input=input.replace("?","\\\?");
 		input=input.replace("|","\\\|");
 		return input;
+		
 		
 	};
 	
