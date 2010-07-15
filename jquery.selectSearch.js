@@ -1,8 +1,8 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2.1
-// Date: 02/02/2010
+// Version 1.2.2 - beta
+// Date: 07/15/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -182,14 +182,22 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		
 		var optionList=selectSearch_Options.optionItems[jQueryselectList.attr('id')];
 		
-	
+		
+		// Need to escape input
+		var inputText=cleanInput(jQuerysearchBox.val());
+		
+
 		for(var i=0;i<optionList.length;i++){
+			
 			tempArray[i]=new Array(optionList[i][0],new Array());	
 			for(j=0;j<optionList[i][1].length;j++){
 				//go through each item and see if it matches
+				
+			
+			
 				var showOption=false;
-				if(startSearchFromFront)showOption=matchingFromStart(jQuerysearchBox.val(),optionList[i][1][j].text);
-				else showOption=matching(jQuerysearchBox.val(),optionList[i][1][j].text);
+				if(startSearchFromFront)showOption=matchingFromStart(inputText,optionList[i][1][j].text);
+				else showOption=matching(inputText,optionList[i][1][j].text);
 				
 				if(showOption)  tempArray[i][1].push(optionList[i][1][j]);
 				
@@ -216,6 +224,20 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		
 	});// end keyup
 	
+	
+	
+	cleanInput=function(input){
+		input=input.replace("(","\\\(");
+		input=input.replace(")","\\\)");
+		input=input.replace("*","\\\*");
+		input=input.replace("+","\\\+");
+		input=input.replace("[","\\\[");
+		input=input.replace("]","\\\]");
+		input=input.replace("?","\\\?");
+		input=input.replace("|","\\\|");
+		return input;
+		
+	};
 	
 	
 	
