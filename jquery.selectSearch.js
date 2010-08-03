@@ -2,7 +2,7 @@
 // This library was created by Kim Doberstein
 
 // Version 1.2.2 - beta (aka inprogress)
-// Date: 07/15/2010
+// Date: 08/03/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -182,7 +182,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		// Need to escape input
 		var inputText=cleanInput(jQuerysearchBox.val());
 		
-
+		
 		for(var i=0;i<optionList.length;i++){
 			
 			tempArray[i]=new Array(optionList[i][0],new Array());	
@@ -195,7 +195,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 				if(startSearchFromFront)showOption=matchingFromStart(inputText,optionList[i][1][j].text);
 				else showOption=matching(inputText,optionList[i][1][j].text);
 				
-				// checkto see if selected
+			
 				
 				if(showOption)  tempArray[i][1].push(optionList[i][1][j]);
 				
@@ -226,30 +226,24 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	});// end keyup
 	
 	jQueryselectList.change(function(){
-		jQueryselectList.find('option').each(function(){
-	
 		
-		//So for each set the value in the array
 		
-		var optionList=selectSearch_Options.optionItems[jQueryselectList.attr('id')];
+		var thisVal=jQuery(this).val();
 		
+		selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]=new Array();
+		
+		if(typeof thisVal=="string"){
+			// this is a single select	
+			selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(thisVal);
 			
-			for(var i=0;i<optionList.length;i++){
-				for(j=0;j<optionList[i][1].length;j++){
-					// let's assume we have match if both the text and value match
-					if( optionList[i][1][j].text==$(this).text()&&optionList[i][1][j].value==$(this).attr('value')){
-						
-						// there is a match
-						 optionList[i][1][j].selected=$(this).attr('selected');
-							
-					}
-					
-				
-				}
-			
+		}
+		
+		else{
+			// this is a multi-select
+			for(var i=0;i<thisVal.length;i++){
+				selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(thisVal[i]);
 			}
-		
-		});
+		}
 	
 	});
 	
@@ -283,7 +277,7 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	var listID=jQueryselectList.attr('id');
 	var optionList=new Array();
-	
+	selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]=new Array();
 	
 	
 	var lastOptGroup=null;
@@ -308,19 +302,21 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 		}
 		
 		if(!isThisAGroup){
-			var isSelected=jQuery(this).attr('selected');
+			//var isSelected=jQuery(this).attr('selected');
 			
-			optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value"),"selected":isSelected});
+			optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
+			if(jQuery(this).attr('selected'))selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));
 			
 			
-			
-			
+		
 		}
 		
 		else{
 			//this is an optgroup and need to go through and add each element in the optgroup
 			jQuery(this).children().each(function(){
-				optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});					 
+				optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
+				if(jQuery(this).attr('selected'))selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));	
+					 
 			});
 			
 		}
@@ -366,6 +362,18 @@ jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
 	
 	jQueryselectList=jQuery(this);
 	jQueryselectList.html("");
+	
+	
+	
+	
+	
+	
+	var hasSelected=false;
+	
+	if(selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]!=undefined) hasSelected=true;
+	
+	
+	
 	for(var k=0;k<tempArray.length;k++){
 		var htmlString="";
 		
@@ -375,7 +383,13 @@ jQuery.fn.selectSearch_buildOptions=function(tempArray,showEmptyOptGroup){
 		for(var m=0;m<tempArray[k][1].length;m++){
 			htmlString+="<option value='"+tempArray[k][1][m].value+"'";
 			
-			if(tempArray[k][1][m].selected)htmlString+= "selected='selected' ";
+		
+			
+			
+			 if(hasSelected&&jQuery.inArray(tempArray[k][1][m].value, selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"])!=-1){
+				htmlString+= "selected='selected' ";
+			} 
+			
 			
 			htmlString+= ">"+tempArray[k][1][m].text+"</option>";
 		}
@@ -561,7 +575,11 @@ function selectSearch_OptionsObject(){
 	//optionItems['selectObj Id'][x][1].length=number of items in an optgroup
 	//optionItems['selectObj Id'][x][1][y].text=text for a given item
 	//optionItems['selectObj Id'][x][1][y].value=value for a given item
-	//optionItems['selectObj id'][x][1][y].selected= is item to be selectd (true/false)
+	
+	
+	//optionItems['selectObj id _selected'][x]=value for a selected item
+	
+	
 	
 	this.optionItems=new Array();
 	

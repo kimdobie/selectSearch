@@ -1,8 +1,8 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2.1
-// Date: 02/02/2010
+// Version 1.2.2 - beta (aka inprogress)
+// Date: 08/03/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -125,3 +125,4 @@
    // Fix a bug where the script fails when a special character was entered in the search box
    // Select item(s) were selected on page load
    // Select item(s) that were selected by the user
+	// Increased performance of the code that tracks what item has been selected
