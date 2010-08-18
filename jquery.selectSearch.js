@@ -461,6 +461,19 @@ jQuery.fn.selectSearch_removeOption=function(itemText,itemValue,optGroupLabel){
 
 
 
+///////////////////////////////////////////////////////////////////////
+jQuery.fn.selectSearch_startSearchFromFront=function(startSearchFromFront_val){
+	//data-selectSearch-fromFront
+		
+	if(startSearchFromFront_val==undefined||(typeof startSearchFromFront_val!="boolean")){
+		alert('Please send a boolean to the 	selectSearch_startSearchFromFront method');
+		return;
+	}
+	$(this).attr('data-selectSearch-fromFront',startSearchFromFront_val);
+	
+};
+
+
 
 function selectSearch_OptionsObject(){
 	//This is a helper object that will hold all the information for the selectSearch objects on the page
