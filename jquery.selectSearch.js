@@ -2,7 +2,7 @@
 // This library was created by Kim Doberstein
 
 // Version 1.2.2 - beta (aka inprogress)
-// Date: 08/03/2010
+// Date: 08/18/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -15,116 +15,9 @@
 
 
 
-///////////////////////////////// HOW TO USE THESE FUNCTIONS /////////////////////////
-// In most cases, you call the selectSearch to a table object using jQuery "daisy-chaining"
-
-// Example : $('#mySelectList').selectSearch(searchBoxObj);
-
-// Where searchBoxObj, is a jQuery pointer to the search box the user types in their search string to narrow down the select menu
-
-
-
-// If you need to tweek how the selectSearch method is applied, you can add any of the following options:
-// {
-//	 selectLast:true/false,  			 // If there is only one option left, should it be selected
-//	startSearchFromFront:true/false,	 //Shoudld the search begin matching at the start of the option text
-//	sortOptions:true/false, 			//Should the options be sorted
-//	sortOptGroups:true/false, 			//Shoudl the optgroups be sorted
-//	showEmptyOptGroup:true/false, 		//If there are any optgroups that do not have any options, should the optgroup label show
-//	fixedWidth:true/false, 				//Should the select list have a fixed width
-// }
-
-
-// Example: $('#mySelectList').selectSearch(searchBoxObj,{selectLast:false,startSearchFromFront:false});
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-////////////////////////////////// GENERAL TIPS FOR SETTING UP YOUR SELECT LIST ///////////
-
-//* All optgroups should have a non-empty label
-//* All option items should have a value attribute set
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-//////////////////////////////// ADDING AN OPTION //////////////////////
-//Because of how this library is constructed, you cannot directly add an option via the DOM.
-//You must call the selectSearch_addOption method and apply it the select list
-//
-//Example: $('#mySelectList').selectSearch_addOption(itemText,itemValue,optGroupLabel)
-//
-//Where:
-//	itemText - the display text of the option
-//	itemValue - the value of the value attribute of the option
-//	optGroupLabel - the label of the optgroup this item should be under.  If it shouldn't be in an optgroup, use ""
-	
-	
-
-// If you need to tweek how the selectSearch_addOption method is applied, you can add any of the following options:
-// {
-//	 selectLast:true/false,   // If there is only one option left, should it be selected
-//	sortOptions:true/false, //Should the options be sorted
-//	sortOptGroups:true/false, //Shoudl the optgroups be sorted
-//	showEmptyOptGroup:true/false, //If there are any optgroups that do not have any options, should the optgroup label show
-
-
-// }
-
-
-// Example:  jQuery('#mySelectList').selectSearch_addOption(itemText,itemValue,optGroupLabel,{selectLast:false,sortOptGroups:false});
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-//////////////////////////////// REMOVING AN OPTION //////////////////////
-//Because of how this library is constructed, you cannot directly remove an option via the DOM.
-//You must call the selectSearch_removeOption method and apply it the select list
-//
-//Example: jQuery('#mySelectList').selectSearch_removeOption(itemText,itemValue,optGroupLabel)
-//
-//Where:
-//	itemText - the display text of the option
-//	itemValue - the value of the value attribute of the option
-//	optGroupLabel - the label of the optgroup this item should be under.  If it isn't in an optgroup, use ""
-	
-// NOTE currently you MUST provide all three arguments.  This method will only rmeove the first matched option
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-//////////////////////////////// HOW THIS LIBRARY WORKS //////////////////////
-//When the selectSearch method is called, all the options in the select list are stored in a large array.
-//When the user types a charachter into the search box, this library emptys all the options in the select list,
-//goes through the array and adds matching array entries to a temporary array, and then the temporary array
-//is used to re-construct the options in the select list.
-//
-//One's first response to just hide/show option items in the select list that match wat was entered into the searchbox.
-//While this works well in Firefox, other browsers including IE and Safari do not allow you to hide an option tag.
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
+	//this is the select menu/list
+	
 	return this.each(function(){
 	var jQueryselectList=jQuery(this);
 	var jQuerysearchBox=jQuery(searchBoxObj);
@@ -137,6 +30,8 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	var fixedWidth=true;
 	
 
+
+	var selectList=jQuery(this);// Just an easy way to remember this object;
 	
 	
 	// Check to see if any of the above vars have been set via the varObj
@@ -157,6 +52,9 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	if(fixedWidth)jQueryselectList.css('width',jQueryselectList.css('width'));
 
 
+	//Set attribute to rememeber the search type
+	$(this).attr('data-selectSearch-fromFront',startSearchFromFront);
+	
 	
 	
 	
@@ -191,8 +89,9 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 				
 			
 			
-				var showOption=false;
-				if(startSearchFromFront)showOption=matchingFromStart(inputText,optionList[i][1][j].text);
+				var showOption=false;	
+				
+				if(selectList.attr('data-selectSearch-fromFront')=='true')showOption=matchingFromStart(inputText,optionList[i][1][j].text);
 				else showOption=matching(inputText,optionList[i][1][j].text);
 				
 			
