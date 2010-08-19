@@ -129,3 +129,9 @@
    // Allow ability to change search type on the fly
 
 
+/////////////////////////////// KNOWN ISSUES / TO-DOS /////////////////////////////////
+
+// The script should reload the options when there is a switch in search type (aka from front or anywhere).
+// The script fails when the following are entered in the searchbox: . \ ^ $
+
+

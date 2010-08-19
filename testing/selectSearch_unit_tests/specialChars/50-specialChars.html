@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>50-Check for special characters</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr>
+	<td rowspan="1" colspan="3">50-Check for special characters - search from front - options not in opt groups</td></tr>
+</thead><tbody>
+<!--Test case 50: specialChars: Check for special characters - search from front - options not in opt groups-->
+<tr>
+	<td>click</td>
+	<td>grapesSearchFromFrontLink</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>!</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>! exclamation</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>&quot;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>&quot; quotes</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>#</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td># pound sign</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>% percent</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>&amp;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>&amp; ampersand</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>'</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>' apostrophe</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>(</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>( open parenthesis</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>)</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>) closing parenthesis</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>*</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>* asterisk</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>+</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>+ plus</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>, comma</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>~</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>~ about</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>- dash</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>. period</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>/</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>/ slash</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>:</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>: colon</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>; semicolon</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>&lt;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>&lt; less than</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>=</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>= equals</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>&gt;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>&gt; greater than</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>?</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>? question</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>@</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>@ at sign</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>[</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>[ open square brackets</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>\</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>\ back slash</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>]</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>] closing square brackets</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>^</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>^ caret</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>_</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>_ underscore</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>`</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>` accent</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>{</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>{ open curly brackets</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>|</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>| pipe</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>}</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>} closing curly brackets</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>type</td>
+	<td>searchFieldGrapes</td>
+	<td>$</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>searchFieldGrapes</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=//select[@id='selectGrapes']//option[1]</td>
+	<td>$ dollar sign</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>xpath=//select[@id='selectGrapes']//option[2]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
