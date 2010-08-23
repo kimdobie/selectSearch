@@ -2,7 +2,7 @@
 // This library was created by Kim Doberstein
 
 // Version 1.2.2 - beta (aka inprogress)
-// Date: 08/18/2010
+// Date: 08/23/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
 
@@ -126,25 +126,56 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 	
 	jQueryselectList.change(function(){
 		
+
+		jQuery(this).find('option').each(function(){
 		
-		var thisVal=jQuery(this).val();
+			
+			if(jQuery(this).attr('selected')){
+			
+				checkIfInSelectedArray(jQuery(this).attr('value'),true,jQueryselectList);
+					
+			}
+			else{
+				checkIfInSelectedArray(jQuery(this).attr('value'),false,jQueryselectList);
+			}
+			
+			
+			
+			
+			
+		});
+	
+	
+	});
+	
+	
+	checkIfInSelectedArray=function(valueToBeRemoved,selected,jQueryselectList){
 		
-		selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]=new Array();
+	
 		
-		if(typeof thisVal=="string"){
-			// this is a single select	
-			selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(thisVal);
+		var index=jQuery.inArray(valueToBeRemoved, selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]);
+		
+		
+		
+		
+		if(index==-1&&selected){
+			// should be in array but is not
+			
+			selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(valueToBeRemoved);
+			//alert(jQueryselectList.attr('id')+"_selected"+" | "+selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]);
+			
+		}
+		else if(index!=-1&&!selected){
+			// in array but shouldn't be
+			
+			selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].splice(index,1);
+			//alert(jQueryselectList.attr('id')+"_selected"+" | "+selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"]);
 			
 		}
 		
-		else{
-			// this is a multi-select
-			for(var i=0;i<thisVal.length;i++){
-				selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(thisVal[i]);
-			}
-		}
+		
+	};
 	
-	});
 	
 	
 	
@@ -204,7 +235,9 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 			//var isSelected=jQuery(this).attr('selected');
 			
 			optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
-			if(jQuery(this).attr('selected'))selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));
+			if(jQuery(this).attr('selected')){
+				selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));
+			}
 			
 			
 		
@@ -214,7 +247,9 @@ jQuery.fn.selectSearch = function(searchBoxObj,varObj) {
 			//this is an optgroup and need to go through and add each element in the optgroup
 			jQuery(this).children().each(function(){
 				optionList[optGroupNum][1].push({"text":jQuery(this).text(),"value":jQuery(this).attr("value")});
-				if(jQuery(this).attr('selected'))selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));	
+				if(jQuery(this).attr('selected')){
+					selectSearch_Options.optionItems[jQueryselectList.attr('id')+"_selected"].push(jQuery(this).attr('value'));	
+				}
 					 
 			});
 			
