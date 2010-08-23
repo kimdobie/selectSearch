@@ -1,7 +1,7 @@
 ////////////////////////////////INFO////////////////////////////////////////
 // This library was created by Kim Doberstein
 
-// Version 1.2.2 - beta (aka inprogress)
+// Version 1.2.2 
 // Date: 08/23/2010
 //
 //This jQuery plug-in allows a select list to be narrowed down by a text input box.
